@@ -1,12 +1,19 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
+import type { Data } from '@/types';
 
-export const useCounterStore = defineStore('counter', () => {
-	const count = ref(0);
-	const doubleCount = computed(() => count.value * 2);
-	function increment() {
-		count.value++;
+export const useTodoStore = defineStore('todoStore', () => {
+	const currentId = ref(0);
+	const data = ref<Data[]>([]);
+	const inputText = ref<null | string>(null);
+
+	function incrementId() {
+		currentId.value++;
 	}
 
-	return { count, doubleCount, increment };
+	const deleteItem = (deleteItemId: any) => {
+		// data.find
+	};
+
+	return { currentId, data, inputText, incrementId, deleteItem };
 });

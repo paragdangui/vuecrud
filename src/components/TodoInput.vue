@@ -1,20 +1,23 @@
 <script setup lang="ts">
-	import { ref, watchEffect } from 'vue';
+	import { useTodoStore } from '@/stores/todoStore';
+	const store = useTodoStore();
 
-	const inputText = ref(null);
+	const emit = defineEmits(['newTodo:value']);
 
-	const emit = defineEmits(['inputText']);
-
-	watchEffect(() => {
-		// console.log(inputText.value, 'inputText');
-		emit('inputText');
-	});
+	const submitHandler = () => {
+		emit('newTodo:value', store.inputText);
+	};
 </script>
 
 <template>
-	<div>
-		<input v-model="inputText" type="text" placeholder="Add Your Todo here" />
-	</div>
+	<form>
+		<input
+			v-model="store.inputText"
+			type="text"
+			placeholder="Add Your Todo here"
+		/>
+		<input type="submit" @click.prevent="submitHandler" />
+	</form>
 </template>
 
 <style scoped></style>
