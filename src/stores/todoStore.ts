@@ -11,9 +11,31 @@ export const useTodoStore = defineStore('todoStore', () => {
 		currentId.value++;
 	}
 
-	const deleteItem = (deleteItemId: any) => {
-		// data.find
+	const deleteItem = (deleteItemId: number) => {
+		const deleteItemIndex = data.value.findIndex((item) => {
+			return item.id == deleteItemId;
+		});
+
+		data.value.splice(deleteItemIndex, 1);
 	};
 
-	return { currentId, data, inputText, incrementId, deleteItem };
+	const editItem = (EditItemId: number, EditItemText: String) => {
+		const editItemIndex = data.value.find((item) => {
+			if (item.id == EditItemId) {
+				item.content == EditItemText;
+			}
+		});
+	};
+
+	const saveItem = () => {};
+
+	return {
+		currentId,
+		data,
+		inputText,
+		incrementId,
+		deleteItem,
+		editItem,
+		saveItem
+	};
 });

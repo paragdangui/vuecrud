@@ -5,7 +5,10 @@
 	const emit = defineEmits(['newTodo:value']);
 
 	const submitHandler = () => {
-		emit('newTodo:value', store.inputText);
+		if (store.inputText != '') {
+			emit('newTodo:value', store.inputText);
+			store.inputText = '';
+		}
 	};
 </script>
 
