@@ -13,7 +13,7 @@
 
 <template>
 	<h1>Todo List</h1>
-	<TodoInput @newTodo:value="inputHandler" />
+	<TodoInput @newTodo="inputHandler" />
 	<TodoList :data="store.data" />
 </template>
 
