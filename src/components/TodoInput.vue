@@ -2,11 +2,11 @@
 	import { useTodoStore } from '@/stores/todoStore';
 	const store = useTodoStore();
 
-	const emit = defineEmits(['newTodo:value']);
+	const emit = defineEmits(['newTodo']);
 
 	const submitHandler = () => {
 		if (store.inputText != '') {
-			emit('newTodo:value', store.inputText);
+			emit('newTodo', store.inputText);
 			store.inputText = '';
 		}
 	};
